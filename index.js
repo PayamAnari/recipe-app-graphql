@@ -14,3 +14,19 @@ const server = new ApolloServer({
   includeStacktraceInErrorResponses: false,
   introspection: true,
 });
+
+const mongoDB = process.env.MONGO_URL;
+
+mongoose.set('strictQuery', true);
+mongoose
+  .connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB...');
+    return startStandaloneServer(server, {
+      listen: { port: process.env.PORT || 4000 },
+      context: context,
+    });
+  })
+  .then(({ server }) => {
+    console.log(`🚀 Server ready at ${server.url}`);
+  });
