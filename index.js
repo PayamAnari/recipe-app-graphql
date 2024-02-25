@@ -8,6 +8,8 @@ import context from './context/context.js';
 
 dotenv.config();
 
+// “merging” types and resolvers
+
 const server = new ApolloServer({
   typeDefs: allTypeDefs,
   resolvers: allResolvers,

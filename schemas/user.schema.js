@@ -18,10 +18,6 @@ const userSchema = gql`
     getUserById(id: ID!): User!
   }
 
-  type InvalidCredentialsError {
-    message: String!
-  }
-
   type JwtToken {
     token: String!
   }
@@ -36,8 +32,6 @@ const userSchema = gql`
     updateAt: DateTime
     userJwtToken: JwtToken
   }
-
-  union LoginResult = UserWithToken | InvalidCredentialsError
 
   type Mutation {
     signUp(input: SignUpInput!): UserWithToken
