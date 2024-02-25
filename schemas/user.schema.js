@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const userSchema = glq`
+const userSchema = gql`
   input SignUpInput {
     email: String!
     password: String!
