@@ -28,6 +28,7 @@ export const ErrorTypes = {
   },
 };
 
+//throwCustomError function
 export default (errorMessage, errorType) => {
   throw new GraphQLError(errorMessage, {
     extensions: {
