@@ -88,4 +88,50 @@ const recipeResolver = {
       message: 'Recipe updated successfully.',
     };
   },
+
+  incrementThumbsUp: async (_, { id }, { user }) => {
+    const isExists = await RecipeHelper.isRecipeExists(id);
+    if (!isExists) {
+      throwCustomError(
+        `Recipe with id ${id} does not exists.`,
+        ErrorTypes.NOT_FOUND,
+      );
+    }
+    await RecipeModel.findByIdAndUpdate(
+      { _id: id },
+      {
+        $inc: { thumbsUp: 1 },
+      },
+      { new: true },
+    );
+
+    return {
+      isSuccess: true,
+      message: 'Thumbs up incremented successfully.',
+    };
+  },
+
+  incrementThumbsDown: async (_, { id }, { user }) => {
+    const isExists = await RecipeHelper.isRecipeExists(id);
+    if (!isExists) {
+      throwCustomError(
+        `Recipe with id ${id} does not exists.`,
+        ErrorTypes.NOT_FOUND,
+      );
+    }
+    await RecipeModel.findByIdAndUpdate(
+      { _id: id },
+      {
+        $inc: { thumbsDown: 1 },
+      },
+      { new: true },
+    );
+
+    return {
+      isSuccess: true,
+      message: 'Thumbs down incremented successfully.',
+    };
+  },
 };
+
+export default recipeResolver;
