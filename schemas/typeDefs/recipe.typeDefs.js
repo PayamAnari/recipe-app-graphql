@@ -5,7 +5,7 @@ const recipeTypeDefs = gql`
     id: ID
     name: String
     description: String
-    createAt: String
+    createdAt: String
     thumbsUp: Int
     thumbsDown: Int
   }

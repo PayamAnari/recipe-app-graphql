@@ -6,10 +6,6 @@ const recipeSchema = gql`
     description: String!
   }
 
-  type NotExistsError {
-    message: String!
-  }
-
   # union SingleRecipeResult = Recipe | NotExistsError
 
   type Query {

@@ -23,7 +23,7 @@ const recipeResolver = {
     async getRecipes(parent, args, contextValue) {
       const amount = args.amount;
       const allRecipes = await RecipeModel.find()
-        .sort({ createAt: -1 })
+        .sort({ createdAt: -1 })
         .limit(amount);
       return allRecipes;
     },
