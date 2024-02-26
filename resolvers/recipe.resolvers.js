@@ -28,4 +28,40 @@ const recipeResolver = {
       return allRecipes;
     },
   },
+
+  Mutation: {
+    createRecipe: async (
+      parent,
+      { recipeInput: { name, description } },
+      contextValue,
+    ) => {
+      const createdRecipe = new RecipeModel({
+        name: name,
+        description: description,
+        createdAt: new Date().toISOString(),
+        thumbsUp: 0,
+        thumbsDown: 0,
+      });
+      const res = await createRecipe.save();
+      return {
+        id: res.id,
+        ...res._doc,
+      };
+    },
+  },
+
+  deleteRecipe: async (_, { id }, contextValue) => {
+    const isExists = await RecipeModel.isRecipeExists(id);
+    if (!isExists) {
+      throwCustomError(
+        `Recipe with id ${id} does not exists.`,
+        ErrorTypes.NOT_FOUND,
+      );
+    }
+    const isDeleted = (await RecipeModel.deleteOne({ _id: id })).deletedCount;
+    return {
+      isSuccess: isDeleted,
+      message: 'Recipe deleted successfully.',
+    };
+  },
 };
