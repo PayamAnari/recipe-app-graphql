@@ -19,5 +19,13 @@ const recipeResolver = {
         ...recipe._doc,
       };
     },
+
+    async getRecipes(parent, args, contextValue) {
+      const amount = args.amount;
+      const allRecipes = await RecipeModel.find()
+        .sort({ createAt: -1 })
+        .limit(amount);
+      return allRecipes;
+    },
   },
 };
