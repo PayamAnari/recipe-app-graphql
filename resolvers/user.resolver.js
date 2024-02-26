@@ -1,11 +1,10 @@
 import UserModel from '../models/user.model.js';
-import UserHelper from '../helpers`/user.helper.js';
+import userHelper from '../helpers/user.helper.js';
 import jwt from 'jsonwebtoken';
 import throwCustomError, {
   ErrorTypes,
 } from '../helpers/error-handler.helper.js';
 import { GraphQLError } from 'graphql';
-import userHelper from '../helpers/user.helper';
 
 const userResolver = {
   Query: {
@@ -32,7 +31,7 @@ const userResolver = {
 
   Mutation: {
     signup: async (_, { input }) => {
-      const { name, password, firstName, lastName } = input;
+      const { email, password, firstName, lastName } = input;
       const isUserExists = await userHelper.isEmailAlreadyExists(email);
       if (isUserExists) {
         throwCustomError(
@@ -68,7 +67,7 @@ const userResolver = {
         $and: [{ email: email }, { password: password }],
       });
       if (user) {
-        const token = jwr.sign(
+        const token = jwt.sign(
           { userId: user._id, email: user.email },
           process.env.JWT_PRIVATE_KEY,
           { expiresIn: process.env.TOKEN_EXPIRY_TIME },

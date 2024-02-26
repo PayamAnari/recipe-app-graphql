@@ -17,7 +17,7 @@ const server = new ApolloServer({
   introspection: true,
 });
 
-const mongoDB = process.env.MONGO_URL;
+const mongoDB = process.env.MONGODB_URL;
 
 mongoose.set('strictQuery', true);
 mongoose
@@ -29,6 +29,6 @@ mongoose
       context: context,
     });
   })
-  .then(({ server }) => {
+  .then((server) => {
     console.log(`🚀 Server ready at ${server.url}`);
   });

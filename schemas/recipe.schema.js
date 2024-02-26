@@ -27,7 +27,7 @@ const recipeSchema = gql`
   type Mutation {
     createRecipe(recipeInput: RecipeInput!): Recipe!
     deleteRecipe(id: ID!): RecipeSuccess
-    EditRecipe(id: ID!, recipeInput: RecipeInput): RecipeSuccess
+    editRecipe(id: ID!, recipeInput: RecipeInput): RecipeSuccess
     incrementThumbsUp(id: ID!): RecipeSuccess
     incrementThumbsDown(id: ID!): RecipeSuccess
   }

@@ -34,8 +34,8 @@ const userSchema = gql`
   }
 
   type Mutation {
-    signUp(input: SignUpInput!): UserWithToken
-    login(input: LoginInput!): LoginResult
+    signup(input: SignUpInput!): UserWithToken
+    login(input: LoginInput!): UserWithToken
   }
 `;
 

@@ -42,95 +42,95 @@ const recipeResolver = {
         thumbsUp: 0,
         thumbsDown: 0,
       });
-      const res = await createRecipe.save();
+      const res = await createdRecipe.save();
       return {
         id: res.id,
         ...res._doc,
       };
     },
-  },
 
-  deleteRecipe: async (_, { id }, contextValue) => {
-    const isExists = await RecipeModel.isRecipeExists(id);
-    if (!isExists) {
-      throwCustomError(
-        `Recipe with id ${id} does not exists.`,
-        ErrorTypes.NOT_FOUND,
-      );
-    }
-    const isDeleted = (await RecipeModel.deleteOne({ _id: id })).deletedCount;
-    return {
-      isSuccess: isDeleted,
-      message: 'Recipe deleted successfully.',
-    };
-  },
+    deleteRecipe: async (_, { id }, contextValue) => {
+      const isExists = await RecipeHelper.isRecipeExists(id);
+      if (!isExists) {
+        throwCustomError(
+          `Recipe with id ${id} does not exists.`,
+          ErrorTypes.NOT_FOUND,
+        );
+      }
+      const isDeleted = (await RecipeModel.deleteOne({ _id: id })).deletedCount;
+      return {
+        isSuccess: isDeleted,
+        message: 'Recipe deleted successfully.',
+      };
+    },
 
-  editRecipe: async (
-    _,
-    { id, recipeInput: { name, description } },
-    { user },
-  ) => {
-    const isExists = await RecipeModel.isRecipeExists(id);
-    if (!isExists) {
-      throwCustomError(
-        `Recipe with id ${id} does not exists.`,
-        ErrorTypes.NOT_FOUND,
-      );
-    }
-    const isEdited = (
-      await RecipeModel.updateOne(
+    editRecipe: async (
+      _,
+      { id, recipeInput: { name, description } },
+      { user },
+    ) => {
+      const isExists = await RecipeHelper.isRecipeExists(id);
+      if (!isExists) {
+        throwCustomError(
+          `Recipe with id ${id} does not exists.`,
+          ErrorTypes.NOT_FOUND,
+        );
+      }
+      const isEdited = (
+        await RecipeModel.updateOne(
+          { _id: id },
+          { name: name, description: description },
+        )
+      ).modifiedCount;
+      return {
+        isSuccess: isEdited,
+        message: 'Recipe updated successfully.',
+      };
+    },
+
+    incrementThumbsUp: async (_, { id }, { user }) => {
+      const isExists = await RecipeHelper.isRecipeExists(id);
+      if (!isExists) {
+        throwCustomError(
+          `Recipe with id ${id} does not exists.`,
+          ErrorTypes.NOT_FOUND,
+        );
+      }
+      await RecipeModel.findByIdAndUpdate(
         { _id: id },
-        { name: name, description: description },
-      )
-    ).modifiedCount;
-    return {
-      isSuccess: isEdited,
-      message: 'Recipe updated successfully.',
-    };
-  },
-
-  incrementThumbsUp: async (_, { id }, { user }) => {
-    const isExists = await RecipeHelper.isRecipeExists(id);
-    if (!isExists) {
-      throwCustomError(
-        `Recipe with id ${id} does not exists.`,
-        ErrorTypes.NOT_FOUND,
+        {
+          $inc: { thumbsUp: 1 },
+        },
+        { new: true },
       );
-    }
-    await RecipeModel.findByIdAndUpdate(
-      { _id: id },
-      {
-        $inc: { thumbsUp: 1 },
-      },
-      { new: true },
-    );
 
-    return {
-      isSuccess: true,
-      message: 'Thumbs up incremented successfully.',
-    };
-  },
+      return {
+        isSuccess: true,
+        message: 'Thumbs up incremented successfully.',
+      };
+    },
 
-  incrementThumbsDown: async (_, { id }, { user }) => {
-    const isExists = await RecipeHelper.isRecipeExists(id);
-    if (!isExists) {
-      throwCustomError(
-        `Recipe with id ${id} does not exists.`,
-        ErrorTypes.NOT_FOUND,
+    incrementThumbsDown: async (_, { id }, { user }) => {
+      const isExists = await RecipeHelper.isRecipeExists(id);
+      if (!isExists) {
+        throwCustomError(
+          `Recipe with id ${id} does not exists.`,
+          ErrorTypes.NOT_FOUND,
+        );
+      }
+      await RecipeModel.findByIdAndUpdate(
+        { _id: id },
+        {
+          $inc: { thumbsDown: 1 },
+        },
+        { new: true },
       );
-    }
-    await RecipeModel.findByIdAndUpdate(
-      { _id: id },
-      {
-        $inc: { thumbsDown: 1 },
-      },
-      { new: true },
-    );
 
-    return {
-      isSuccess: true,
-      message: 'Thumbs down incremented successfully.',
-    };
+      return {
+        isSuccess: true,
+        message: 'Thumbs down incremented successfully.',
+      };
+    },
   },
 };
 
