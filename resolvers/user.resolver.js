@@ -36,10 +36,17 @@ const userResolver = {
       const isUserExists = await userHelper.isEmailAlreadyExists(email);
       if (isUserExists) {
         throwCustomError(
-          'Email is already Registerd',
+          'Email is already Registered',
           ErrorTypes.ALREADY_EXISTS,
         );
       }
+      const userToCreate = new UserModel({
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        following: [],
+      });
     },
   },
 };
