@@ -47,6 +47,20 @@ const userResolver = {
         lastName: lastName,
         following: [],
       });
+      const user = await userToCreate.save();
+      const token = jwt.sign(
+        { userId: user._id, email: user.email },
+        process.env.JWT_PRIVATE_KEY,
+        { expiresIn: process.env.TOKEN_EXPIRY_TIME },
+      );
+
+      return {
+        __typename: 'UserWithToken',
+        ...user._doc,
+        userJwtToken: {
+          token: token,
+        },
+      };
     },
   },
 };
