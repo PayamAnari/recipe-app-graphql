@@ -5,6 +5,7 @@ import throwCustomError, {
   ErrorTypes,
 } from '../helpers/error-handler.helper.js';
 import { GraphQLError } from 'graphql';
+import userHelper from '../helpers/user.helper';
 
 const userResolver = {
   Query: {
@@ -16,6 +17,28 @@ const userResolver = {
         return users;
       } catch (error) {
         throw new GraphQLError(error.message);
+      }
+    },
+
+    getUserById: async (_, { id }, contextValue) => {
+      try {
+        const user = await UserModel.findById(id);
+        return user;
+      } catch (error) {
+        throw new GraphQLError(error.message);
+      }
+    },
+  },
+
+  Mutation: {
+    signup: async (_, { input }) => {
+      const { name, password, firstName, lastName } = input;
+      const isUserExists = await userHelper.isEmailAlreadyExists(email);
+      if (isUserExists) {
+        throwCustomError(
+          'Email is already Registerd',
+          ErrorTypes.ALREADY_EXISTS,
+        );
       }
     },
   },
