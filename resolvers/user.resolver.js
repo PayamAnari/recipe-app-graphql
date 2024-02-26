@@ -62,5 +62,30 @@ const userResolver = {
         },
       };
     },
+
+    login: async (_, { input: { email, password } }, context) => {
+      const user = await UserModel.findOne({
+        $and: [{ email: email }, { password: password }],
+      });
+      if (user) {
+        const token = jwr.sign(
+          { userId: user._id, email: user.email },
+          process.env.JWT_PRIVATE_KEY,
+          { expiresIn: process.env.TOKEN_EXPIRY_TIME },
+        );
+        return {
+          ...user._doc,
+          userJwtToken: {
+            token: token,
+          },
+        };
+      }
+      throwCustomError(
+        'Invalid email or password provided.',
+        ErrorTypes.BAD_USER_INPUT,
+      );
+    },
   },
 };
+
+export default userResolver;
