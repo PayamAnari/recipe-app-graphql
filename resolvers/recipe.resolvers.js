@@ -64,4 +64,28 @@ const recipeResolver = {
       message: 'Recipe deleted successfully.',
     };
   },
+
+  editRecipe: async (
+    _,
+    { id, recipeInput: { name, description } },
+    { user },
+  ) => {
+    const isExists = await RecipeModel.isRecipeExists(id);
+    if (!isExists) {
+      throwCustomError(
+        `Recipe with id ${id} does not exists.`,
+        ErrorTypes.NOT_FOUND,
+      );
+    }
+    const isEdited = (
+      await RecipeModel.updateOne(
+        { _id: id },
+        { name: name, description: description },
+      )
+    ).modifiedCount;
+    return {
+      isSuccess: isEdited,
+      message: 'Recipe updated successfully.',
+    };
+  },
 };
