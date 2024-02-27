@@ -49,6 +49,11 @@ const recipeResolver = {
         creator: creatorId,
       });
       const res = await createdRecipe.save();
+
+      await UserModel.findByIdAndUpdate(creatorId, {
+        $push: { recipes: res._id },
+      });
+
       return {
         id: res.id,
         ...res._doc,

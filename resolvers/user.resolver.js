@@ -13,7 +13,8 @@ const userResolver = {
       try {
         const users = await UserModel.find()
           .sort({ createdAt: -1 })
-          .limit(total);
+          .limit(total)
+          .populate('recipes');
 
         const usersWithRecipes = await Promise.all(
           users.map(async (user) => {
