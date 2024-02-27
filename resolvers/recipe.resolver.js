@@ -61,11 +61,7 @@ const recipeResolver = {
       };
     },
 
-    deleteRecipe: async (_, { id }, { currentUser }) => {
-      if (!currentUser) {
-        throwCustomError('User not authenticated.', ErrorTypes.UNAUTHORIZED);
-      }
-
+    deleteRecipe: async (_, { id }, contextValue) => {
       const isExists = await RecipeHelper.isRecipeExists(id);
       if (!isExists) {
         throwCustomError(
@@ -82,13 +78,8 @@ const recipeResolver = {
 
     editRecipe: async (
       _,
-      { id, recipeInput: { name, description } },
-      { currentUser },
+      { id, recipeInput: { name, description }, contextValue },
     ) => {
-      if (!currentUser) {
-        throwCustomError('User not authenticated.', ErrorTypes.UNAUTHORIZED);
-      }
-
       const isExists = await RecipeHelper.isRecipeExists(id);
       if (!isExists) {
         throwCustomError(
@@ -108,11 +99,7 @@ const recipeResolver = {
       };
     },
 
-    incrementThumbsUp: async (_, { id }, { currentUser }) => {
-      if (!currentUser) {
-        throwCustomError('User not authenticated.', ErrorTypes.UNAUTHORIZED);
-      }
-
+    incrementThumbsUp: async (_, { id }, contextValue) => {
       const isExists = await RecipeHelper.isRecipeExists(id);
       if (!isExists) {
         throwCustomError(
@@ -134,11 +121,7 @@ const recipeResolver = {
       };
     },
 
-    incrementThumbsDown: async (_, { id }, { currentUser }) => {
-      if (!currentUser) {
-        throwCustomError('User not authenticated.', ErrorTypes.UNAUTHORIZED);
-      }
-
+    incrementThumbsDown: async (_, { id }, contextValue) => {
       const isExists = await RecipeHelper.isRecipeExists(id);
       if (!isExists) {
         throwCustomError(
