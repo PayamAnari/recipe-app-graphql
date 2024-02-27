@@ -5,6 +5,7 @@ import throwCustomError, {
   ErrorTypes,
 } from '../helpers/error-handler.helper.js';
 import { GraphQLError } from 'graphql';
+import RecipeModel from '../models/recipe.model.js';
 
 const userResolver = {
   Query: {
@@ -13,7 +14,17 @@ const userResolver = {
         const users = await UserModel.find()
           .sort({ createdAt: -1 })
           .limit(total);
-        return users;
+
+        const usersWithRecipes = await Promise.all(
+          users.map(async (user) => {
+            const recipes = await RecipeModel.find({ creator: user._id });
+            return {
+              ...user._doc,
+              recipes: recipes,
+            };
+          }),
+        );
+        return usersWithRecipes;
       } catch (error) {
         throw new GraphQLError(error.message);
       }
@@ -22,7 +33,22 @@ const userResolver = {
     getUserById: async (_, { id }, contextValue) => {
       try {
         const user = await UserModel.findById(id);
-        return user;
+        if (!user) {
+          throwCustomError(
+            `User with id ${id} does not exist.`,
+            ErrorTypes.NOT_FOUND,
+          );
+        }
+
+        const recipes = await RecipeModel.find({ creator: id });
+
+        return {
+          ...user._doc,
+          recipes: recipes.map((recipe) => ({
+            ...recipe._doc,
+            creator: user,
+          })),
+        };
       } catch (error) {
         throw new GraphQLError(error.message);
       }

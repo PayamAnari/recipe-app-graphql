@@ -4,6 +4,7 @@ const recipeSchema = gql`
   input RecipeInput {
     name: String!
     description: String!
+    creatorId: ID!
   }
 
   # union SingleRecipeResult = Recipe | NotExistsError

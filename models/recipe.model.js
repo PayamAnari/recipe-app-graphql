@@ -18,6 +18,10 @@ const recipeSchema = new Schema({
   thumbsDown: {
     type: Number,
   },
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
 const RecipeModel = model('Recipe', recipeSchema);

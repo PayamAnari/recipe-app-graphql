@@ -5,9 +5,10 @@ const recipeTypeDefs = gql`
     id: ID
     name: String
     description: String
-    createdAt: String
+    createdAt: DateTime
     thumbsUp: Int
     thumbsDown: Int
+    creator: User
   }
 `;
 

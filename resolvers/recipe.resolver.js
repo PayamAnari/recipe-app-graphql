@@ -3,6 +3,7 @@ import RecipeHelper from '../helpers/recipe.helper.js';
 import throwCustomError, {
   ErrorTypes,
 } from '../helpers/error-handler.helper.js';
+import UserModel from '../models/user.model.js';
 
 const recipeResolver = {
   Query: {
@@ -32,24 +33,34 @@ const recipeResolver = {
   Mutation: {
     createRecipe: async (
       parent,
-      { recipeInput: { name, description } },
-      contextValue,
+      { recipeInput: { name, description, creatorId } },
     ) => {
+      const creator = await UserModel.findById(creatorId);
+      if (!creator) {
+        throwCustomError('Creator not found.', ErrorTypes.NOT_FOUND);
+      }
+
       const createdRecipe = new RecipeModel({
         name: name,
         description: description,
         createdAt: new Date().toISOString(),
         thumbsUp: 0,
         thumbsDown: 0,
+        creator: creatorId,
       });
       const res = await createdRecipe.save();
       return {
         id: res.id,
         ...res._doc,
+        creator: creator,
       };
     },
 
-    deleteRecipe: async (_, { id }, contextValue) => {
+    deleteRecipe: async (_, { id }, { currentUser }) => {
+      if (!currentUser) {
+        throwCustomError('User not authenticated.', ErrorTypes.UNAUTHORIZED);
+      }
+
       const isExists = await RecipeHelper.isRecipeExists(id);
       if (!isExists) {
         throwCustomError(
@@ -67,8 +78,12 @@ const recipeResolver = {
     editRecipe: async (
       _,
       { id, recipeInput: { name, description } },
-      { user },
+      { currentUser },
     ) => {
+      if (!currentUser) {
+        throwCustomError('User not authenticated.', ErrorTypes.UNAUTHORIZED);
+      }
+
       const isExists = await RecipeHelper.isRecipeExists(id);
       if (!isExists) {
         throwCustomError(
@@ -88,7 +103,11 @@ const recipeResolver = {
       };
     },
 
-    incrementThumbsUp: async (_, { id }, { user }) => {
+    incrementThumbsUp: async (_, { id }, { currentUser }) => {
+      if (!currentUser) {
+        throwCustomError('User not authenticated.', ErrorTypes.UNAUTHORIZED);
+      }
+
       const isExists = await RecipeHelper.isRecipeExists(id);
       if (!isExists) {
         throwCustomError(
@@ -110,7 +129,11 @@ const recipeResolver = {
       };
     },
 
-    incrementThumbsDown: async (_, { id }, { user }) => {
+    incrementThumbsDown: async (_, { id }, { currentUser }) => {
+      if (!currentUser) {
+        throwCustomError('User not authenticated.', ErrorTypes.UNAUTHORIZED);
+      }
+
       const isExists = await RecipeHelper.isRecipeExists(id);
       if (!isExists) {
         throwCustomError(

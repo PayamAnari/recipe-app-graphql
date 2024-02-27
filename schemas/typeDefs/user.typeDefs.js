@@ -10,8 +10,9 @@ const userTypeDefs = gql`
     firstName: String
     lastName: String
     following: [String]
-    createAt: DateTime
-    updateAt: DateTime
+    createdAt: DateTime
+    updatedAt: DateTime
+    recipes: [Recipe]
   }
 `;
 
