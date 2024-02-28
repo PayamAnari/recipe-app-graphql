@@ -44,3 +44,4 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 
 - **CRUD Operations:** Perform Create, Read, Update, and Delete operations on recipes for seamless recipe management.
 - **Rating System:** Allow users to rate recipes with thumbs up or thumbs down, providing valuable feedback.
+- **User Relationships:** Associate recipes with specific users to track creators and contributors accurately.
