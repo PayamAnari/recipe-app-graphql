@@ -39,6 +39,12 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 - **GraphQL API:** Utilizes GraphQL for efficient and flexible querying of recipe data.
 
 ---
+<p align="center">
+  <img 
+    width="500"
+    alt="home"
+    src="https://live.staticflickr.com/65535/53558271791_9dd6f15e45_z.jpg"/>
+</p>
 
 ## Recipe Management
 
