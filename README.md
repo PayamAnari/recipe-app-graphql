@@ -96,3 +96,6 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 <br/>**Parameters:**
 <br/>**input:** User registration details.
 
+- **login:*8 Authenticates a user.
+<br/>**Parameters:**
+<br/>**input:** User login credentials.
