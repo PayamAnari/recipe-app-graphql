@@ -8,7 +8,7 @@ import UserModel from '../models/user.model.js';
 const recipeResolver = {
   Query: {
     recipe: async (parent, { id }, contextValue) => {
-      const recipe = await RecipeModel.findById(id);
+      const recipe = await RecipeModel.findById(id).populate('creator');
       if (!recipe) {
         throwCustomError(
           `Recipe with id ${id} does not exists.`,
@@ -18,6 +18,7 @@ const recipeResolver = {
       return {
         id: recipe._id,
         ...recipe._doc,
+        creator: recipe.creator,
       };
     },
 
@@ -25,8 +26,13 @@ const recipeResolver = {
       const amount = args.amount;
       const allRecipes = await RecipeModel.find()
         .sort({ createdAt: -1 })
-        .limit(amount);
-      return allRecipes;
+        .limit(amount)
+        .populate('creator');
+      return allRecipes.map((recipe) => ({
+        id: recipe._id,
+        ...recipe._doc,
+        creator: recipe.creator,
+      }));
     },
   },
 
