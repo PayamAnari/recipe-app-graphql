@@ -66,3 +66,8 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 ---
 
 ## API Documentation
+
+### Types
+
+- **Recipe:** Represents a recipe with its details including name, description, creator, etc.
+- **User:** Represents a user with their basic information, recipes they've created, etc.
