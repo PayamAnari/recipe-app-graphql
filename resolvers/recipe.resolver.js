@@ -33,7 +33,7 @@ const recipeResolver = {
   Mutation: {
     createRecipe: async (
       parent,
-      { recipeInput: { name, description, creatorId } },
+      { recipeInput: { name, description, creatorId }, contextValue },
     ) => {
       const creator = await UserModel.findById(creatorId);
       if (!creator) {
@@ -61,14 +61,31 @@ const recipeResolver = {
       };
     },
 
-    deleteRecipe: async (_, { id }, contextValue) => {
-      const isExists = await RecipeHelper.isRecipeExists(id);
-      if (!isExists) {
+    deleteRecipe: async (_, { id }, context) => {
+      console.log(context);
+      const userId = context.user.userId;
+
+      if (!userId) {
         throwCustomError(
-          `Recipe with id ${id} does not exists.`,
+          'You are not authorized to delete this recipe.',
+          ErrorTypes.UNAUTHORIZED,
+        );
+      }
+      const recipe = await RecipeModel.findById(id);
+      if (!recipe) {
+        throwCustomError(
+          `Recipe with id ${id} does not exist.`,
           ErrorTypes.NOT_FOUND,
         );
       }
+
+      if (userId !== recipe.creator.toString()) {
+        throwCustomError(
+          'You are not authorized to delete this recipe.',
+          ErrorTypes.UNAUTHORIZED,
+        );
+      }
+
       const isDeleted = (await RecipeModel.deleteOne({ _id: id })).deletedCount;
       return {
         isSuccess: isDeleted,
@@ -78,13 +95,28 @@ const recipeResolver = {
 
     editRecipe: async (
       _,
-      { id, recipeInput: { name, description }, contextValue },
+      { id, recipeInputUpdate: { name, description } },
+      context,
     ) => {
-      const isExists = await RecipeHelper.isRecipeExists(id);
-      if (!isExists) {
+      const userId = context.user.userId;
+
+      if (!userId) {
         throwCustomError(
-          `Recipe with id ${id} does not exists.`,
+          'You are not authorized to edit this recipe.',
+          ErrorTypes.UNAUTHORIZED,
+        );
+      }
+      const recipe = await RecipeModel.findById(id);
+      if (!recipe) {
+        throwCustomError(
+          `Recipe with id ${id} does not exist.`,
           ErrorTypes.NOT_FOUND,
+        );
+      }
+      if (userId !== recipe.creator.toString()) {
+        throwCustomError(
+          'You are not authorized to edit this recipe.',
+          ErrorTypes.UNAUTHORIZED,
         );
       }
       const isEdited = (

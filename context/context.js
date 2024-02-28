@@ -31,7 +31,7 @@ const context = async ({ req, res }) => {
   // get the token from the request headers
   const token = req.headers.authorization || '';
 
-  // try tp retrieve a user with the token
+  // try to retrieve a user with the token
   const user = await getUser(token);
 
   // if the user is not found, throw an error
