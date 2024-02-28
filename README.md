@@ -33,4 +33,4 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 ## Features
 
 - **User Authentication:** Users can sign up and log in to access and manage their recipes.
-
+- **Recipe Management:** Users can create new recipes, edit existing ones, and delete recipes they own.
