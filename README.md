@@ -62,3 +62,7 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 - **Mutation Operations:** Implement mutations for creating, updating, and deleting recipes, as well as managing user accounts.
 - **Schema Design:** Design a robust GraphQL schema to represent recipes, users, and associated data structures.
 - **API Documentation:** Document available queries, mutations, and types to guide API consumers in utilizing the GraphQL endpoint effectively.
+
+---
+
+## API Documentation
