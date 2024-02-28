@@ -92,4 +92,7 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 
 ### Mutations
 
+- **signup:** Registers a new user.
+<br/>**Parameters:**
+<br/>**input:** User registration details.
 
