@@ -125,3 +125,5 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 
 ## Technologies Used
 
+- **Node.js:** Server-side JavaScript runtime environment.
+
