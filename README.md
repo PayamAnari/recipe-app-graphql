@@ -52,3 +52,4 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 - **User Login:** Implement secure login functionality using email and password credentials.
 - **User Profile Management:** Provide endpoints for users to update their profile information, including first name, last name, and email.
 - **User Authentication:** Implement token-based authentication to verify user identity and authorize access to protected resources.
+- **Error Handling:** Gracefully handle authentication errors and unauthorized access to endpoints.
