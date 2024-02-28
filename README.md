@@ -127,4 +127,5 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 
 - **Node.js:** Server-side JavaScript runtime environment.
 - **MongoDB:** NoSQL database used for storing recipe and user data.
+- **Apollo Server:** GraphQL server implementation for Node.js.
 
