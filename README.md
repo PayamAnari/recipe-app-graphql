@@ -89,3 +89,7 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 - **getRecipes:** Retrieves a list of recipes.
 <br/>**Parameters:**
 <br/>**amount:** Limit the number of recipes to retrieve.
+
+### Mutations
+
+
