@@ -116,3 +116,7 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 - **incrementThumbsUp:** Increments the thumbs up count for a recipe.
 <br/>**Parameters:**
 <br/>**id:** ID of the recipe to increment thumbs up.
+
+- **incrementThumbsDown:** Increments the thumbs down count for a recipe.
+<br/>**Parameters:**
+<br/>**id:** ID of the recipe to increment thumbs down.
