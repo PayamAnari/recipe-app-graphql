@@ -37,3 +37,7 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 - **Rating System:** Recipes can be rated with thumbs up or thumbs down, providing feedback to the creators.
 - **User Profiles:** Each user has a profile showing their recipes and basic information.
 - **GraphQL API:** Utilizes GraphQL for efficient and flexible querying of recipe data.
+
+---
+
+## Recipe Management
