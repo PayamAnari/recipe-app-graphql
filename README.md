@@ -96,7 +96,7 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 <br/>**Parameters:**
 <br/>**input:** User registration details.
 
-- **login:*8 Authenticates a user.
+- **login:** Authenticates a user.
 <br/>**Parameters:**
 <br/>**input:** User login credentials.
 
@@ -173,3 +173,16 @@ npm start
 ```
 - **Access the GraphQL Playground:**
 Open your browser and go to http://localhost:4000 to access the GraphQL Playground. Here, you can interact with the API, execute queries, and explore the schema.
+
+---
+
+## License
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+### Built with ❤️ by Payam Anari
+
+Thank you for exploring the Gym Fitness app! If you have any questions, feedback, or just want to say hi, feel free to [reach out](mailto:anari.p62@gmail.com). Happy fitness journey!
+
+---
