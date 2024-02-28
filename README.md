@@ -50,3 +50,4 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 
 - **User Registration:** Enable users to register for an account with their email, password, first name, and last name.
 - **User Login:** Implement secure login functionality using email and password credentials.
+- **User Profile Management:** Provide endpoints for users to update their profile information, including first name, last name, and email.
