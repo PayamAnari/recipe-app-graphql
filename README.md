@@ -27,3 +27,5 @@
 ### Description
 
 This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Server. The application allows users to manage recipes, including creating, editing, deleting, and rating recipes.
+
+---
