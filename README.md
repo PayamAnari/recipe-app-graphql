@@ -47,3 +47,5 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 - **User Relationships:** Associate recipes with specific users to track creators and contributors accurately.
 
 ## User Authentication and Authorization
+
+- **User Registration:** Enable users to register for an account with their email, password, first name, and last name.
