@@ -129,4 +129,18 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 - **MongoDB:** NoSQL database used for storing recipe and user data.
 - **Apollo Server:** GraphQL server implementation for Node.js.
 - **GraphQL:** Query language for APIs, providing a more efficient and powerful alternative to REST.
+- **JSON Web Tokens (JWT):** Used for user authentication and authorization.
+- **Mongoose:** MongoDB object modeling tool for Node.js.
 
+   <p align="left">
+  <img src="https://img.shields.io/badge/nodejs-FF0000?style=for-the-badge&logo=nodejs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/mongodb-00008B?style=for-the-badge&logo=mongodb&logoColor=white"/>
+  <img src="https://img.shields.io/badge/apollo-acace6?style=for-the-badge&logo=apollo&logoColor=white"/>
+  <img src="https://img.shields.io/badge/graphql-0000FF?style=for-the-badge&logo=graphql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/jwt-ffa500?style=for-the-badge&logo=jwt&logoColor=white"/>
+  <img src="https://img.shields.io/badge/mongoose-FF2578?style=for-the-badge&logo=mongoose&logoColor=white"/>
+ 
+</p>
+
+
+---
