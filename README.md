@@ -133,14 +133,43 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 - **Mongoose:** MongoDB object modeling tool for Node.js.
 
    <p align="left">
-  <img src="https://img.shields.io/badge/nodejs-FF0000?style=for-the-badge&logo=nodejs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Nodejs-FF0000?style=for-the-badge&logo=nodejs&logoColor=white"/>
   <img src="https://img.shields.io/badge/mongodb-00008B?style=for-the-badge&logo=mongodb&logoColor=white"/>
   <img src="https://img.shields.io/badge/apollo-acace6?style=for-the-badge&logo=apollo&logoColor=white"/>
   <img src="https://img.shields.io/badge/graphql-0000FF?style=for-the-badge&logo=graphql&logoColor=white"/>
-  <img src="https://img.shields.io/badge/jwt-ffa500?style=for-the-badge&logo=jwt&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JWT-ffa500?style=for-the-badge&logo=jwt&logoColor=white"/>
   <img src="https://img.shields.io/badge/mongoose-FF2578?style=for-the-badge&logo=mongoose&logoColor=white"/>
  
 </p>
 
 
 ---
+
+## Getting Started
+
+- **Clone the Repository:**
+```
+git clone https://github.com/PayamAnari/recipe-app-graphql.git
+
+```
+- **Install Dependencies:**
+```
+cd recipe-app-graphql
+npm install
+
+```
+- **Set Environment Variables:**
+```
+PORT=4000
+MONGODB_URL=your-mongodb-connection-string
+JWT_PRIVATE_KEY=your-jwt-private-key
+TOKEN_EXPIRY_TIME=token-expiry-time
+
+```
+- **Start the Server:**
+```
+npm start
+
+```
+- **Access the GraphQL Playground:**
+Open your browser and go to http://localhost:4000 to access the GraphQL Playground. Here, you can interact with the API, execute queries, and explore the schema.
