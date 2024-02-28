@@ -75,5 +75,5 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 ### Queries
 
 - **getUsers:** Retrieves a list of users.
-- **Parameters:**
-- **total:** Limit the number of users to retrieve.
+    </br>**Parameters:**
+      </br>**total:** Limit the number of users to retrieve.
