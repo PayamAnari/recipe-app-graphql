@@ -81,3 +81,7 @@ This is a GraphQL-powered Recipe App built with Node.js, MongoDB, and Apollo Ser
 - **getUserById:** Retrieves a user by their ID.
 <br/>**Parameters:**
 <br/>**id:** ID of the user to retrieve.
+
+- **recipe:** Retrieves a recipe by its ID.
+<br/>**Parameters:**
+<br/>**id:** ID of the recipe to retrieve.
